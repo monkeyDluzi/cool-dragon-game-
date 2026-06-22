@@ -1,13 +1,14 @@
 body {
-  margin: 0;
-  min-height: 100vh;
+    margin: 0;
+    min-height: 100vh;
 
-  background-image: url("images/cool pic.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url("images/cool pic.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: fadeIn 2s;
 }
-
 /* All buttons */
 a {
   position: absolute;
@@ -56,4 +57,16 @@ a:active {
   top: 500px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
