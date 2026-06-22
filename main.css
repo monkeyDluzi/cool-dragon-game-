@@ -9,7 +9,7 @@ body {
 }
 
 /* All buttons */
-button {
+a {
   position: absolute;
 
   padding: 15px 35px;
@@ -28,13 +28,13 @@ button {
 }
 
 /* Hover effect */
-button:hover {
+a:hover {
   transform: scale(1.1);
   background: linear-gradient(to bottom, #ffd700, #ff8c00);
 }
 
 /* Click effect */
-button:active {
+a:active {
   transform: translateY(6px);
   box-shadow: 0 0 0 #5a2d0c;
 }
