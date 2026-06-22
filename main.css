@@ -78,3 +78,14 @@ a img {
     vertical-align: middle;
     margin-right: 10px;
 }
+
+#logo {
+    width: 300px;
+
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    animation: fadeLogo 2s;
+}
