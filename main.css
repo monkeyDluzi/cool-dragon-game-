@@ -11,8 +11,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 h1 {
   font-size: 50px;
+  color: white;
+  text-shadow: 3px 3px 5px black;
 }
 
 button {
@@ -33,13 +36,11 @@ button {
   transition: all 0.2s ease;
 }
 
-/* When the mouse is over the button */
 button:hover {
   transform: scale(1.1);
   background: linear-gradient(to bottom, #ffd700, #ff8c00);
 }
 
-/* When the button is clicked */
 button:active {
   transform: translateY(6px);
   box-shadow: 0 0 0 #5a2d0c;
