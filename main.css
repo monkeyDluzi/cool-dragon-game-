@@ -17,7 +17,30 @@ h1 {
 
 button {
   margin: 10px;
-  padding: 15px 30px;
+  padding: 15px 35px;
+
   font-size: 24px;
+  font-weight: bold;
+  color: white;
+
+  background: linear-gradient(to bottom, #ffb347, #ff7b00);
+  border: 3px solid #8b4513;
+  border-radius: 15px;
+
   cursor: pointer;
+
+  box-shadow: 0 6px 0 #5a2d0c;
+  transition: all 0.2s ease;
+}
+
+/* When the mouse is over the button */
+button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to bottom, #ffd700, #ff8c00);
+}
+
+/* When the button is clicked */
+button:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 #5a2d0c;
 }
