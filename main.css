@@ -63,3 +63,17 @@ button:active {
   top: 500px;
   left: 500px;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url("images/cool pic.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
