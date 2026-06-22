@@ -1,17 +1,20 @@
-body {
-  margin: 0;
-  min-height: 100vh;
+button {
+  position: absolute;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 15px 35px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
 
-  background-image: url("images/cool pic.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(to bottom, #ffb347, #ff7b00);
+  border: 3px solid #8b4513;
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 0 #5a2d0c;
+  transition: all 0.2s ease;
 }
-
 h1 {
   font-size: 50px;
   color: white;
@@ -47,7 +50,7 @@ button:active {
 }
 
 #story {
-  top: 400px;
+  top: 300px;
   left: 500px;
 }
 
@@ -57,6 +60,6 @@ button:active {
 }
 
 #credits {
-  top: 400px;
+  top: 500px;
   left: 500px;
 }
