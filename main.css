@@ -8,18 +8,6 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Game title */
-h1 {
-  font-size: 50px;
-  color: white;
-  text-shadow: 3px 3px 5px black;
-
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 /* All buttons */
 button {
   position: absolute;
