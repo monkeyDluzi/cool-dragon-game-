@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
