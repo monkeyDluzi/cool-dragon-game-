@@ -1,13 +1,16 @@
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: skyblue;
-}
 
+  background-image: url("images/cool pic.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 h1 {
   font-size: 50px;
 }
