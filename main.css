@@ -45,3 +45,18 @@ button:active {
   transform: translateY(6px);
   box-shadow: 0 0 0 #5a2d0c;
 }
+
+#story {
+  top: 400px;
+  left: 500px;
+}
+
+#infinite {
+  top: 400px;
+  left: 500px;
+}
+
+#credits {
+  top: 400px;
+  left: 500px;
+}
