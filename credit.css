@@ -66,3 +66,30 @@ p {
         transform: translateY(0);
     }
 }
+
+
+
+
+#back {
+  position: absolute;
+
+  padding: 15px 35px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+
+  background: linear-gradient(to bottom,#767676, black);
+  border: 3px solid #8b4513;
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 0 #5a2d0c;
+  transition: all 0.2s ease;
+}
+
+#story {
+  top: 800px;
+  left: 50%;
+  transform: translateX(-50%);
+}
