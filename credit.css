@@ -88,7 +88,7 @@ p {
 }
 
 #back {
-  top: 800px;
+  top: 700px;
   left: 50%;
   transform: translateX(-50%);
 }
