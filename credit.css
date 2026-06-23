@@ -88,7 +88,7 @@ p {
   transition: all 0.2s ease;
 }
 
-#story {
+#back {
   top: 800px;
   left: 50%;
   transform: translateX(-50%);
