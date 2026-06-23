@@ -7,18 +7,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    animation: fadeIn 2s;
-}
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
 /* All buttons */
 a {
   position: absolute;
@@ -67,35 +56,5 @@ a:active {
   top: 500px;
   left: 50%;
   transform: translateX(-50%);
-}
 
-@keyframes fadeIn {
 
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-a img {
-    width: 15px;
-    height: 15px;
-
-    vertical-align: middle;
-    margin-right: 10px;
-}
-
-#logo {
-    width: 300px;
-
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    animation: fadeLogo 2s;
-}
