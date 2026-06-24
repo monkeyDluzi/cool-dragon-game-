@@ -1,104 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Story Intro</title>
+    <title>Story</title>
 
     <style>
         body {
             margin: 0;
             background: black;
-            overflow: hidden;
-        }
 
-        video {
-            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            object-fit: cover;
         }
 
-        #skipButton {
+        img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            border-radius: 15px;
+        }
+
+        #next {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
 
-            padding: 15px 25px;
-            font-size: 20px;
+            padding: 15px 30px;
+            font-size: 24px;
 
+            background: orange;
             color: white;
-            background: rgba(0,0,0,0.7);
 
-            border: 2px solid white;
-            border-radius: 10px;
-
-            cursor: pointer;
-        }
-
-        #skipButton:hover {
-            transform: scale(1.1);
-        }
-    </style>
-</head>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Story Intro</title>
-
-    <style>
-        body {
-            margin: 0;
-            background: black;
-            overflow: hidden;
-        }
-
-        video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
-
-        #skipButton {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-
-            padding: 15px 25px;
-            font-size: 20px;
-
-            color: white;
-            background: rgba(0,0,0,0.7);
-
-            border: 2px solid white;
-            border-radius: 10px;
-
-            cursor: pointer;
-        }
-
-        #skipButton:hover {
-            transform: scale(1.1);
+            border: none;
+            border-radius: 15px;
         }
     </style>
 </head>
 
 <body>
 
-    <video id="introVideo" autoplay>
-        <source src="videos/coolvid.mp4" type="video/mp4">
-    </video>
+    <img src="images/bh.png" alt="Story Image">
 
-    <button id="skipButton">Skip</button>
+    <button id="next">Start Game</button>
 
     <script>
-        const video = document.getElementById("introVideo");
-        const skipButton = document.getElementById("skipButton");
-
-        // Go to the game when the video finishes
-        video.addEventListener("ended", () => {
-            window.location.href = "game.html";
-        });
-
-        // Skip button
-        skipButton.addEventListener("click", () => {
+        document.getElementById("next").addEventListener("click", () => {
             window.location.href = "game.html";
         });
     </script>
