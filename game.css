@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#gameArea {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("images/sky.png");
+    background-size: cover;
+
+    position: relative;
+}
+
+#player {
+    width: 150px;
+
+    position: absolute;
+    left: 100px;
+    top: 300px;
+}
+
+#score {
+    color: white;
+
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
