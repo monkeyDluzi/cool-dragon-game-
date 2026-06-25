@@ -5,21 +5,56 @@ let y = 300;
 
 document.addEventListener("keydown", (event) => {
 
-    if (event.key === "ArrowRight") {
-        x += 20;
-    }
+   <img id="dragon" src="images/dragon.gif" alt="Dragon">
 
-    if (event.key === "ArrowLeft") {
-        x -= 20;
-    }
+<script>
+const dragon = document.getElementById("dragon");
 
-    if (event.key === "ArrowUp") {
-        y -= 20;
-    }
+let x = 100;
+let y = 100;
+const speed = 5;
 
-    if (event.key === "ArrowDown") {
-        y += 20;
-    }
+// Stores which keys are being held down
+const keys = {};
+
+// When a key is pressed
+document.addEventListener("keydown", function(event) {
+  keys[event.key] = true;
+});
+
+// When a key is released
+document.addEventListener("keyup", function(event) {
+  keys[event.key] = false;
+});
+
+// Game loop - runs about 60 times per second
+function gameLoop() {
+
+  if (keys["ArrowRight"]) {
+    x += speed;
+  }
+
+  if (keys["ArrowLeft"]) {
+    x -= speed;
+  }
+
+  if (keys["ArrowUp"]) {
+    y -= speed;
+  }
+
+  if (keys["ArrowDown"]) {
+    y += speed;
+  }
+
+  dragon.style.left = x + "px";
+  dragon.style.top = y + "px";
+
+  requestAnimationFrame(gameLoop);
+}
+
+// Start the game loop
+gameLoop();
+</script>
 
     player.style.left = x + "px";
     player.style.top = y + "px";
