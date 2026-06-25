@@ -1,60 +1,68 @@
 body {
     margin: 0;
     min-height: 100vh;
+    overflow: hidden;
 
     background-image: url("images/cool pic.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
+}
 
 /* All buttons */
 a {
-  position: absolute;
+    position: absolute;
 
-  padding: 15px 35px;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
+    padding: 15px 35px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
 
-  background: linear-gradient(to bottom, #ffb347, #ff7b00);
-  border: 3px solid #8b4513;
-  border-radius: 15px;
+    background: linear-gradient(to bottom, #ffb347, #ff7b00);
+    border: 3px solid #8b4513;
+    border-radius: 15px;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  box-shadow: 0 6px 0 #5a2d0c;
-  transition: all 0.2s ease;
+    box-shadow: 0 6px 0 #5a2d0c;
+    transition: all 0.2s ease;
 }
 
 /* Hover effect */
 a:hover {
-  transform: scale(1.1);
-  background: linear-gradient(to bottom, #ffd700, #ff8c00);
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, #ffd700, #ff8c00);
 }
 
 /* Click effect */
 a:active {
-  transform: translateY(6px);
-  box-shadow: 0 0 0 #5a2d0c;
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #5a2d0c;
 }
 
 /* Button positions */
 #story {
-  top: 300px;
-  left: 50%;
-  transform: translateX(-50%);
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #infinite {
-  top: 400px;
-  left: 50%;
-  transform: translateX(-50%);
+    top: 400px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #credits {
-  top: 500px;
-  left: 50%;
-  transform: translateX(-50%);
+    top: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-
+/* Dragon */
+#dragon {
+    position: absolute;
+    width: 150px;
+    left: 100px;
+    top: 100px;
+}
