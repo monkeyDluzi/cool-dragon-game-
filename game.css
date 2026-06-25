@@ -28,3 +28,14 @@ body {
     top: 20px;
     left: 20px;
 }
+
+#gameArea {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("images/grass.png");
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+}
