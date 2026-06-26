@@ -1,6 +1,7 @@
 const dragon = document.getElementById("dragon");
 const gameArea = document.getElementById("gameArea");
 const waveText = document.getElementById("wave");
+const healthText = document.getElementById("health");
 
 let x = 100;
 let y = 300;
@@ -13,92 +14,151 @@ const friction = 0.85;
 const keys = {};
 
 let enemies = [];
-let wave = 1;
+let fireballs = [];
 
-// controls
+let wave = 1;
+let health = 100;
+
+// keyboard
 document.addEventListener("keydown", (event) => {
-  keys[event.key] = true;
+    keys[event.key] = true;
+
+    if (event.key === " ") {
+        shootFireball();
+    }
 });
 
 document.addEventListener("keyup", (event) => {
-  keys[event.key] = false;
+    keys[event.key] = false;
 });
 
-// spawn enemies
+// fireball
+function shootFireball() {
+    const fireball = document.createElement("div");
+    fireball.className = "fireball";
+
+    gameArea.appendChild(fireball);
+
+    fireballs.push({
+        el: fireball,
+        x: x,
+        y: y,
+        speed: 10
+    });
+}
+
+// enemies
 function spawnWave() {
-  enemies = [];
+    enemies = [];
 
-  for (let i = 0; i < wave + 2; i++) {
-    const enemy = document.createElement("img");
-    enemy.src = "images/enemy.png"; // change if needed
-    enemy.id = "enemy";
+    for (let i = 0; i < wave + 2; i++) {
+        const enemy = document.createElement("img");
+        enemy.src = "images/enemy.png";
+        enemy.className = "enemy";
 
-    enemy.style.left = Math.random() * (window.innerWidth - 60) + "px";
-    enemy.style.top = Math.random() * (window.innerHeight - 60) + "px";
+        enemy.style.left = Math.random() * (window.innerWidth - 60) + "px";
+        enemy.style.top = Math.random() * (window.innerHeight - 60) + "px";
 
-    gameArea.appendChild(enemy);
-    enemies.push(enemy);
-  }
+        gameArea.appendChild(enemy);
+        enemies.push(enemy);
+    }
 
-  waveText.innerText = "Wave: " + wave;
+    waveText.innerText = "Wave: " + wave;
 }
 
 spawnWave();
 
+// game loop
 function gameLoop() {
 
-  // movement
-  if (keys["ArrowRight"]) vx += speed;
-  if (keys["ArrowLeft"]) vx -= speed;
-  if (keys["ArrowDown"]) vy += speed;
-  if (keys["ArrowUp"]) vy -= speed;
+    // movement
+    if (keys["ArrowRight"]) vx += speed;
+    if (keys["ArrowLeft"]) vx -= speed;
+    if (keys["ArrowDown"]) vy += speed;
+    if (keys["ArrowUp"]) vy -= speed;
 
-  x += vx;
-  y += vy;
+    x += vx;
+    y += vy;
 
-  vx *= friction;
-  vy *= friction;
+    vx *= friction;
+    vy *= friction;
 
-  if (Math.abs(vx) < 0.05) vx = 0;
-  if (Math.abs(vy) < 0.05) vy = 0;
+    if (Math.abs(vx) < 0.05) vx = 0;
+    if (Math.abs(vy) < 0.05) vy = 0;
 
-  // boundaries
-  const maxX = window.innerWidth - dragon.offsetWidth;
-  const maxY = window.innerHeight - dragon.offsetHeight;
+    // boundaries
+    const maxX = window.innerWidth - dragon.offsetWidth;
+    const maxY = window.innerHeight - dragon.offsetHeight;
 
-  if (x < 0) x = 0;
-  if (y < 0) y = 0;
-  if (x > maxX) x = maxX;
-  if (y > maxY) y = maxY;
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+    if (x > maxX) x = maxX;
+    if (y > maxY) y = maxY;
 
-  dragon.style.left = x + "px";
-  dragon.style.top = y + "px";
+    dragon.style.left = x + "px";
+    dragon.style.top = y + "px";
 
-  // 🧠 check enemy collision
-  enemies = enemies.filter(enemy => {
+    // fireballs
+    fireballs = fireballs.filter(fb => {
 
-    const ex = enemy.offsetLeft;
-    const ey = enemy.offsetTop;
+        fb.x += fb.speed;
 
-    const dx = x - ex;
-    const dy = y - ey;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+        fb.el.style.left = fb.x + "px";
+        fb.el.style.top = fb.y + "px";
 
-    if (distance < 50) {
-      enemy.remove();
-      return false;
+        let hit = false;
+
+        enemies = enemies.filter(enemy => {
+
+            const ex = enemy.offsetLeft;
+            const ey = enemy.offsetTop;
+
+            const dx = fb.x - ex;
+            const dy = fb.y - ey;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 30) {
+                enemy.remove();
+                hit = true;
+                return false;
+            }
+
+            return true;
+        });
+
+        if (hit || fb.x > window.innerWidth) {
+            fb.el.remove();
+            return false;
+        }
+
+        return true;
+    });
+
+    // enemy damage
+    enemies.forEach(enemy => {
+
+        const ex = enemy.offsetLeft;
+        const ey = enemy.offsetTop;
+
+        const dx = x - ex;
+        const dy = y - ey;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 40) {
+            health -= 1;
+        }
+
+    });
+
+    healthText.innerText = "Health: " + health;
+
+    // next wave
+    if (enemies.length === 0) {
+        wave++;
+        spawnWave();
     }
 
-    return true;
-  });
-
-  // 🌊 next wave when all enemies are gone
-  if (enemies.length === 0) {
-    wave++;
-    spawnWave();
-  }
-
-  requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
