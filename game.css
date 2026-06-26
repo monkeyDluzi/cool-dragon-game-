@@ -7,14 +7,15 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background-image: url("images/sky.png");
+    background-image: url("images/grass.png");
     background-size: cover;
+    background-position: center;
 
     position: relative;
 }
 
 #player {
-    width: 150px;
+    width: 80px; 
 
     position: absolute;
     left: 100px;
@@ -23,19 +24,9 @@ body {
 
 #score {
     color: white;
+    font-size: 30px;
 
     position: absolute;
     top: 20px;
     left: 20px;
-}
-
-#gameArea {
-    width: 100vw;
-    height: 100vh;
-
-    background-image: url("images/grass.png");
-    background-size: cover;
-    background-position: center;
-
-    position: relative;
 }
