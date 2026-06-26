@@ -14,24 +14,39 @@ body {
     position: relative;
 }
 
-#player {
+#dragon {
     position: absolute;
-
     width: 80px;
     height: auto;
-
-    max-width: 80px;
-    max-height: 80px;
 
     left: 100px;
     top: 300px;
 }
 
-#score {
-    color: white;
-    font-size: 30px;
-
+#wave {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 20px;
+    color: white;
+}
+
+#health {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    color: red;
+}
+
+.enemy {
+    position: absolute;
+    width: 60px;
+}
+
+.fireball {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: orange;
+    border-radius: 50%;
+    box-shadow: 0 0 10px red;
 }
