@@ -1,45 +1,51 @@
-const player = document.getElementById("player");
+const dragon = document.getElementById("dragon");
 
 let x = 100;
-let y = 100;
-const speed = 5;
+let y = 300;
+
+let vx = 0;
+let vy = 0;
+
+const speed = 0.8;      // acceleration
+const friction = 0.85;  // slows dragon down smoothly
 
 const keys = {};
 
-// When a key is pressed
-document.addEventListener("keydown", function(event) {
+// key press
+document.addEventListener("keydown", (event) => {
   keys[event.key] = true;
 });
 
-// When a key is released
-document.addEventListener("keyup", function(event) {
+// key release
+document.addEventListener("keyup", (event) => {
   keys[event.key] = false;
 });
 
-// Game loop
 function gameLoop() {
 
-  if (keys["ArrowRight"]) {
-    x += speed;
-  }
+  // acceleration (smooth movement start)
+  if (keys["ArrowRight"]) vx += speed;
+  if (keys["ArrowLeft"]) vx -= speed;
+  if (keys["ArrowDown"]) vy += speed;
+  if (keys["ArrowUp"]) vy -= speed;
 
-  if (keys["ArrowLeft"]) {
-    x -= speed;
-  }
+  // apply movement
+  x += vx;
+  y += vy;
 
-  if (keys["ArrowUp"]) {
-    y -= speed;
-  }
+  // friction (smooth stop)
+  vx *= friction;
+  vy *= friction;
 
-  if (keys["ArrowDown"]) {
-    y += speed;
-  }
+  // stop tiny sliding
+  if (Math.abs(vx) < 0.05) vx = 0;
+  if (Math.abs(vy) < 0.05) vy = 0;
 
-  player.style.left = x + "px";
-  player.style.top = y + "px";
+  // update position
+  dragon.style.left = x + "px";
+  dragon.style.top = y + "px";
 
   requestAnimationFrame(gameLoop);
 }
 
-// Start the game
 gameLoop();
