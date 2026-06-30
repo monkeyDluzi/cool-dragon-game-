@@ -52,15 +52,21 @@ function spawnWave() {
     enemies = [];
 
     for (let i = 0; i < wave + 2; i++) {
-        const enemy = document.createElement("img");
-        enemy.src = "images/enemy.png";
-        enemy.className = "enemy";
+        const enemyImg = document.createElement("img");
+        enemyImg.src = "images/bad5.jpeg";
+        enemyImg.className = "enemy";
 
-        enemy.style.left = Math.random() * (window.innerWidth - 60) + "px";
-        enemy.style.top = Math.random() * (window.innerHeight - 60) + "px";
+        // Distribute within viewport bounds
+        enemyImg.style.left = Math.random() * (window.innerWidth - 60) + "px";
+        enemyImg.style.top = Math.random() * (window.innerHeight - 60) + "px";
 
-        gameArea.appendChild(enemy);
-        enemies.push(enemy);
+        gameArea.appendChild(enemyImg);
+        
+        // FIX: Store as an object containing the element and its movement speed
+        enemies.push({
+            el: enemyImg,
+            speed: 1.5 // Adjust enemy chase speed here
+        });
     }
 
     waveText.innerText = "Wave: " + wave;
@@ -98,31 +104,45 @@ function gameLoop() {
     dragon.style.left = x + "px";
     dragon.style.top = y + "px";
 
-    // fireballs
+    // FIX: Moved enemy intelligence tracking inside the active loop
+    enemies.forEach(enemy => {
+        const ex = enemy.el.offsetLeft;
+        const ey = enemy.el.offsetTop;
+
+        const dx = x - ex;
+        const dy = y - ey;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 0) {
+            const moveX = dx / distance;
+            const moveY = dy / distance;
+
+            enemy.el.style.left = ex + moveX * enemy.speed + "px";
+            enemy.el.style.top = ey + moveY * enemy.speed + "px";
+        }
+    });
+
+    // fireballs updating & colliding
     fireballs = fireballs.filter(fb => {
-
         fb.x += fb.speed;
-
         fb.el.style.left = fb.x + "px";
         fb.el.style.top = fb.y + "px";
 
         let hit = false;
 
         enemies = enemies.filter(enemy => {
-
-            const ex = enemy.offsetLeft;
-            const ey = enemy.offsetTop;
+            const ex = enemy.el.offsetLeft;
+            const ey = enemy.el.offsetTop;
 
             const dx = fb.x - ex;
             const dy = fb.y - ey;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < 30) {
-                enemy.remove();
+                enemy.el.remove();
                 hit = true;
                 return false;
             }
-
             return true;
         });
 
@@ -130,15 +150,13 @@ function gameLoop() {
             fb.el.remove();
             return false;
         }
-
         return true;
     });
 
     // enemy damage
     enemies.forEach(enemy => {
-
-        const ex = enemy.offsetLeft;
-        const ey = enemy.offsetTop;
+        const ex = enemy.el.offsetLeft;
+        const ey = enemy.el.offsetTop;
 
         const dx = x - ex;
         const dy = y - ey;
@@ -147,10 +165,15 @@ function gameLoop() {
         if (distance < 40) {
             health -= 1;
         }
-
     });
 
-    healthText.innerText = "Health: " + health;
+    healthText.innerText = "Health: " + Math.max(0, health);
+
+    // Game Over condition checking
+    if (health <= 0) {
+        alert("Game Over! You reached Wave " + wave);
+        return; // Stops loop
+    }
 
     // next wave
     if (enemies.length === 0) {
@@ -161,28 +184,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-enemies.forEach(enemy => {
-
-    const ex = enemy.el.offsetLeft;
-    const ey = enemy.el.offsetTop;
-
-    const dx = x - ex;
-    const dy = y - ey;
-
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance > 0) {
-
-        const moveX = dx / distance;
-        const moveY = dy / distance;
-
-        enemy.el.style.left =
-            ex + moveX * enemy.speed + "px";
-
-        enemy.el.style.top =
-            ey + moveY * enemy.speed + "px";
-    }
-
-});
-
 gameLoop();
+
+
