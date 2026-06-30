@@ -161,4 +161,28 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
+enemies.forEach(enemy => {
+
+    const ex = enemy.el.offsetLeft;
+    const ey = enemy.el.offsetTop;
+
+    const dx = x - ex;
+    const dy = y - ey;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > 0) {
+
+        const moveX = dx / distance;
+        const moveY = dy / distance;
+
+        enemy.el.style.left =
+            ex + moveX * enemy.speed + "px";
+
+        enemy.el.style.top =
+            ey + moveY * enemy.speed + "px";
+    }
+
+});
+
 gameLoop();
